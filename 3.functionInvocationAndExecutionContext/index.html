@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Function Invocation and Execution Stack</title>
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <h1>Function Invocation and Execution Stack</h1>
+    <p>
+      Each function invocation creates <b>new Execution context</b>. The new
+      Execution context is placed on top of the current one in the
+      <b>Execution stack</b>. The top most execution context, is the current
+      context.
+    </p>
+    <p>
+      During recursion, new execution contexts are being created with each
+      invocation.
+    </p>
+    <p>
+      Each execution contexts have their own <b>Variable Environment</b>. Inside
+      the Variable environment is where the variables of that execution context
+      lives.
+    </p>
+
+    <h2>Scope Chain</h2>
+    <p>
+      Execution context creation is dependent on function invocation. But the
+      creation of <b>outer reference</b> is dependent on the
+      <b>Lexical Environment</b>. It means, scoping depends on where things
+      physically sit. So the outer reference is created to the Lexically
+      wrapping outer environment.
+      <br />
+      If a variable is not defined/found inside the Variable Environment of a
+      function, the variable is searched in the outer environment's variable
+      environment. This continues till the Global environment is reached. If
+      complier fails to find the variable in the Global execution context, then
+      it throws a reference error.
+    </p>
+
+    <h2>Async Callback</h2>
+    <p>
+      JS Engine perform async operation with the help of callbacks. The JS
+      engine comprises of may other engines running along with it.
+      <br />
+      When async operation like a HTTP request is started, a callback get
+      registered that to be processed on successful of the event. Once the
+      operation is completed, the http engine notifies the JS engine about it,
+      by placing an event in the <b>Event Queue</b>.
+      <br />
+      There is an infinitely running loop called <b>Event Loop</b> in JS that
+      keeps watch of the Event Queue and the Execution Stack. Once the Execution
+      stack is empty, the events from Event Queue are processed one by one.
+      Event Queue is a <b>FIFO</b> queue. The execution context for the events
+      are created when the registered callbacks are triggered.
+      <br />
+      As evident, even the async operations are handled synchronously by the
+      engine (one at a time).
+    </p>
+  </body>
+</html>

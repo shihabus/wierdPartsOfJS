@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="app.js"></script>
+    <title>OO JS and Prototypal Inheritance</title>
+  </head>
+  <body>
+    <h4>
+      Inheritance in JS
+    </h4>
+    <p>
+      <b>Inheritance</b> is, one Object getting access to the properties and
+      methods of another Object. JS supports something called
+      <i>Prototypal Inheritance</i>. This is much more simple, extensible and
+      felxible when compared to Inheritance in other programming languages.
+      Programming languages like C,C++ and Java supports
+      <i>Classical Inheritance</i>.
+    </p>
+
+    <h4>Prototype</h4>
+    <p>
+      Objects are collection of key value pairs. They have user defined
+      properties and methods and much more hidden or default created ones too.
+      One such property is <code>__proto__</code> which is called the
+      <b><i>Prototype</i></b
+      >. This property is available on all the Objects. The
+      <code>__proto__</code>
+      Object can have its own properties and methods, which the parent Object
+      can use and consume as, as it's own.
+    </p>
+    <h5>Prototype chain</h5>
+    <p>
+      <code>
+        var person = { <br />
+        &nbsp name:'default' <br />
+        &nbsp getname:function(){ <br />
+        &nbsp &nbsp return this.name <br />
+        &nbsp } <br />
+        } <br />
+        <br />
+        var shihab = { <br />
+        &nbsp name:'Shihab' <br />
+        } <br />
+        <br />
+        shihab.__proto__ = person; <br />
+      </code>
+      <br />
+
+      In the above code, if I do <code>shihab.getname()</code>, the engine try
+      to find <code>getname()</code> in <code>shihab</code> Object. As it wasn't
+      found it will move to <code>shihab.__proto__</code>. As it is available
+      over there, it stops and uses that method. This is called
+      <b>Prototypal Chain</b>. This comes into play for Objects.
+      <code>__proto__</code> can inturn have its own <code>__proto__</code> and
+      this can go on. It goes in search of property and method until the
+      <code>__proto__</code> property returns <code>null</code>. <br />
+      <br />
+      As it is evident from the example, no one has to mention
+      <code>object_name.__proto__.property_name</code> to find the properties
+      (or methods). <code>object_name.property_name</code> is enough and rest
+      engine will take care. So from outside it is like, that particular method
+      or property is within the parent Object, even though it is referred via
+      it's <code>prototype</code>.
+      <br />
+      <br />
+      In JS all are Objects or Primitives. Everything have a prototype by
+      default. The inbuilt methods are made available to them through this
+      <code>__proto__</code> Object.
+    </p>
+  </body>
+</html>

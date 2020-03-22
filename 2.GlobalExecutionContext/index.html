@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Execution Context: Global</title>
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <h1>Global Execution Context</h1>
+    <ul>
+      <li>It is the base Execution Context</li>
+      <li>Written outside all functions</li>
+      <li>
+        The syntax parser readily creates a :
+        <ul>
+          <li>Context Object: Window</li>
+          <li>'this' reference. In Global Context, this == Window</li>
+          <li>Outer environment link. In Global, it is empty</li>
+        </ul>
+      </li>
+      <li>
+        Global variable and functions are added to Global Execution content
+        object.<br />
+        This can be access via both Window and 'this'.
+      </li>
+    </ul>
+  </body>
+</html>

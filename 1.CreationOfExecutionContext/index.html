@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" 
+    content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Creation of Execution Context</title>
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <h2>Execution Context creation has two phases</h2>
+    <ul>
+      <li><h3>Creation Phase</h3></li>
+      <p>
+          In this phase 
+          <ul>
+              <li>Global Object</li>
+              <li><code>this</code></li>
+              <li>Outer Environment link</li>
+          </ul>
+          are created.
+          <br> Memory space for functions are variables are 
+          created and alloted. 
+          <h4>Hoisting</h4>
+          <p>The named function declaration are 
+              moved to the top, along 
+              with their body</p>
+          <p>The variables declared <code>var</code> are 
+            initialized 
+            with <code>undefined</code></p> 
+            <i title="undefined">
+                <code>undefined</code> indicates the variable was declared
+                but never got assigned. If the variable wasn't declared
+                at all, it would throw a <b>ReferenceError</b>.
+            </i>
+            <p>
+          Actually none of them are being physically 
+          being moved to the top, 
+          rather 
+          their memory allocation is mistook, 
+          thus called <b>Hoisting</b>.</p>
+      </p>
+      <hr>
+      <li><h3>Execution Phase</h3></li>
+      <p>In Execution phase the code is run line by line.</p>
+    </ul>
+  </body>
+</html>

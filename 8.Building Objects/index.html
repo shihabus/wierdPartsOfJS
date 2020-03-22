@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./1.functionConstructors.js"></script>
+    <script src="./2.buitInFunctionConstructors.js"></script>
+    <script src="./3.otherWays.js"></script>
+    <title>Building Objects</title>
+  </head>
+  <body>
+    <h1>Building objects</h1>
+    <p>
+      There are many way to construct Objects in JS. Below are few of them being
+      discussed
+    </p>
+    <ul>
+      <li>
+        <h2>Function Constructors</h2>
+        <p>
+            <p>
+                Function invocation leads to creation of new Execution Contexts. For
+                building Objects using Function Constructors we are actually tweaking
+                this property.
+            </p>
+          <i>synatx</i>
+          <br />
+          <code>
+            function Person(){ <br />
+            &nbsp this.name='Shihab' <br />
+            }<br />
+            var objectName=<b>new</b> Person()
+          </code>
+          <p>
+              By using <code><b>new</b></code> keyword infront of the function call, in the
+              Execution Context the <b><code>this</code></b>  key is set to a brand new
+              Object being created. As Function Constructors are functions, they can
+              accept arguments. The <code><b>new</b></code> keyword creates a new Object 
+              and the function invocation is used to set properties and methods to this
+              new object. Each a function constructor is used, a brand we object gets 
+              created.
+              <hr>
+              <p>
+                Note: Function Constructor name's first letter is <b>Capitalized</b> as a 
+                convention.
+              </p>
+          </p>
+          <h3>Setting <code>prototype</code></h3>
+          <p>
+            Functions are special Objects. Every function has a property called
+            <code>prototype</code>. This can be quite miss leading from the name, 
+            but <i>it is the prototype(__proto__) of the Objects 
+            that are being created with 
+            the function as Function Constructor.</i>
+          </p>
+          <p>The methods and properties inside the function are created each time 
+            a new Object is created using the Function. But if the methods or 
+            properties are being created and attached to the <code>prototype</code>
+            of the function, a single copy of it is created and gets shared among all
+            the new Objects. In this way, <code>prototype</code> helps in reducing the
+            memory usage for new Objects.
+          </p>
+          <p>
+            <b>Note:</b>
+            It is a general convention to capitalize the function names, which are 
+            intended to be used as Function Constructors.
+          </p>
+        </p>
+
+        <section>
+          <h3>Built-in Function Constructors</h3>
+          <p>
+            In order to avail default methods for primitives and other data types,
+            they have individual function constructors. The common methods are
+            defined inside the <code>prototype</code> of these base objects and 
+            gets inherited by the objects that get created by them using the 
+            <code>new</code> keyword.
+          </p>
+          <p>
+            When creating primitives like strings and numbers, JS automatically
+            places the value inside the <code>PrimitiveValue</code> of respective
+            base Objects. Thus we do have access to the default methods available
+            for them.
+          </p>
+          <p>
+            In order to enhance built-in function constructors, more methods
+            and properties can be added to their <code>prototype</code> 
+            property. So all the new values that gets created will have access 
+            to this custom enhanced properties and methods. Many of the 
+            libraries use this approach.But this is not an ideal solution 
+            always and at times it is quite dangerous, for example with Dates.
+            So it is always safe to use literals for creation of primitives.
+            New we are creating primitives with function constructor, we
+            end up creating Objects rather than primitives. So try to use 
+            less of function constructors for Primitive creation.
+          </p>
+          <hr>
+          <h4>Don't use <code>for..in</code> to iterate over arrays</h4>
+          <p>
+            Arrays are Objects, with indices and properties. <code>For..in</code>
+            loops are used to iterate over objects using their property.  
+            Suppose, there is some library which adds a method or property
+            to an Array in its prototype. So when using <code>For..in</code> 
+            loop for Array this also gets listed. So a greater approach is
+            to use <code>for</code> loop or or <code>For...of</code> loop.
+          </p>
+        </section>
+      </li>
+      <li>
+          <h2><code>Object.create</code></h2>
+          <section> 
+            <code>Object.create</code> is a newer method for creation of 
+            Objects and supports pure prototypal inheritance. It take a 
+            base Object as argument and creates a new empty Object, with
+            its prototype set to the base Object.
+          </section>
+      </li>
+      <li>
+          <h2><code>Class</code></h2>
+          <section> 
+            <code>Class</code> is a syntactic sugar of creating Object. It is 
+            other of creating Function Constructor. But it is far different 
+            from classes in other programming languages. In JS classes are Objects,
+            whereas in other programming languages they are templates for creating
+            new Objects.
+          </section>
+      </li>
+    </ul>
+  </body>
+</html>

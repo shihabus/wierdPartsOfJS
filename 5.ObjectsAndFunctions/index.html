@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- <script src="app1.js"></script> -->
+  <script src="app2.js"></script>
+  <!-- <script src="app3.js"></script> -->
+  <!-- <script src="app4.js"></script> -->
+  <!-- <script src="app5.js"></script> -->
+  <title>Objects and Functions</title>
+</head>
+
+<body>
+  <h2>Objects</h2>
+  <pre>app1.js</pre>
+  <p>
+    Objects are <i>collections of name value pairs.</i>The Primitives and
+    other child objects are called <i><b>PROPERTIES</b></i> and the functions
+    are called
+    <i><b>METHODS.</b></i>
+    <b></b>
+    Objects store the memory locations where its properties and methods are stored.
+    The methods and properties can be accessed by:
+    <ul>
+      <li>
+        <p>
+          <b>Computed Memory Access []:</b>
+          In order to access a property or the methods, their corresponding keys are
+          passed inside <i>[]</i> along with the object name. It is mainly useful when
+          we have to access the members by setting variables.
+        </p>
+      </li>
+      <li>
+        <p>
+          <b>Dot Operator .</b> <i>(Member Access) :</i>
+          Here we access the members but writing them followed by a <b>.</b> after
+          the object name. In effect the key is converted to string by the syntax parser.
+          This is the most cleaner way of accessing object members. It have more precedence
+          over CMA.
+        </p>
+      </li>
+    </ul>
+    <h4>Object Literals</h4>
+    There are many ways to create an Object in JS. One is <code>new Object()</code>.
+    The other is using <b>Object Literals</b>, viz:
+    <code>
+      var person={};
+    </code>
+    This one is more cleaner and easier when compared to the other way. The properties and
+    methods are embedded inside <code>{}</code> with keys and values separated by <code>:</code>.
+    Object literals is really helpful to create Objects on the fly.
+  </p>
+  <hr>
+  <h2>JSON <i>JavaScript Object Notation</i></h2>
+  <p>
+    Earlier XML was in wide use to transfer data over the internet. As the payload was huge in XML due to
+    redundant tags, now JSON is popular. JSON is really inspired by JS's Object literal syntax. JSON
+    can be thought of as a subset of JS Object, i.e JSON is JS Object, but JS Objects are not JSON.
+    The major difference is, the property names(keys) in JSON should be string(wrapped in quotes).
+    Whereas for JS Object they can either be string or not.
+    <code>JSON.stringify()</code> is used to convert a JS Object into JSON, and <code>JSON.parse()</code>
+    is used to create valid JS Objects out of JSON. Basically, JSON are strings.
+    <code>
+      '{ "name":"Shihab","isAProgrammer":true }'
+    </code> is JOSN.
+    <code>
+      { name:"Shihab",isAProgrammer:true }
+    </code> is an Object.
+  </p>
+  <hr>
+  <h2>First Class Objects</h2>
+  <pre>app2.js</pre>
+  <p>
+    <b>Functions are Objects in JS.</b>This might sound weird by it is. Functions are special
+    type of Objects
+    stored in memory. Similar to Object, they have a
+    <ul>
+      <li>Primitives and Objects as Properties</li>
+      <li>Functions as Methods</li>
+      <li>Name which is optional</li>
+      <li>Code, that is <code>invocable</code></li>
+    </ul>
+    The last two are additional features of a Functions wrt to an Object. Functions are called
+    <b>First Class Objects</b> because all the operations that can be performed on other types
+    can also be performed on Functions. They can be assigned to variables, passed around and
+    so on.
+    <h4>Function Expression</h4>
+    <code>
+      var anonymousGreet=function(){
+      <br>
+      console.log('Hi');
+      <br>
+      }
+      <br>
+      anonymousGreet();
+    </code>
+    <br>
+    Function Expression are <b>never hoisted</b>. When they are being invoked a function
+    Object is created on the fly and get
+    assigned into the variable, during the execution phase. They can be named ones or anonymous.
+    <h4>Function Statements</h4>
+    <code>
+      greet();
+      <br>
+      function greet(){<br>
+      console.log('Hi');<br>
+      } <br>
+    </code>
+    <br>
+    Function Statements are <b>hoisted</b>. Initially there are put into memory and when the function call
+    is encountered, they are invoked.
+    <br>
+    <br>
+    <i><b>Note</b>: Primitives are passed <b>by value</b> (works on copy) and Objects
+      are passed <b>by reference</b> (works on)
+      actual values. <b>The values are only passed by reference if
+        they are already existing in memory. For example</b></i>
+    <br>
+    <code>
+      var obj1={name:'Shihab'} <br>
+      <br>
+      // The RHS already exist in memory <br>
+      var obj2=obj1 <br>
+      obj1.name='Shifa' <br>
+      console.log(obj2) // {name:'Shifa'} <br>
+      <br>
+      // Here the new Object never existed in the memory. <br>
+      obj1={name:'Althaf'} <br>
+      console.log(obj2) // {name:'Shifa'} <br>
+    </code>
+  </p>
+
+  <h4><i>this</i> Keyword</h4>
+  <p>
+    Functions are just special Objects with a name which is optional and a code
+    property. When a function is getting invoked, it is the code property getting
+    invoked in turn. <br>
+    During the function invocation, a new Execution context get created. It has,
+    a
+    <ul>
+      <li>Variable Environment </li>
+      <li>Outer Environment Reference </li>
+      <li>this Keyword.</li>
+    </ul>
+    <br>
+    <code>this</code> keyword inside a function always depends on the call site.
+    The this keyword refers to the outer wrapping Object. A function invoked from
+    Global context will have <code>window</code> as the this keyword. For a method,
+    it will the outer wrapping Object itself. <b><i>But for inner functions within these
+        methods, <code>this</code> keyword binds to Global.</i> </b>
+    The same function when getting triggered from different call sites,
+    would have different values for this.
+  </p>
+
+  <h4>
+    <code>arguments</code> and <code>spread</code>
+    <pre>app3.js</pre>
+  </h4>
+  <p>
+    with each function execution, a new Execution Context gets created. It have
+    <ul>
+      <li>
+        Variable Environment
+      </li>
+      <li>
+        Outer Environment reference
+      </li>
+      <li>
+        <code>this</code> keyword
+      </li>
+      <li>
+        <code>arguments</code> : Using <code>arguments</code> keyword we can access
+        all the function
+        parameters in an array like object. <code>spread</code> operator let us
+        collect all the extra arguments, than the defined place holders.
+      </li>
+    </ul>
+    <i>
+      <b>Note:</b>JS doesn't support <b>Function Overloading</b>, With function
+      overloading we can trigger different functions with same name, for different
+      parameter numbers.
+    </i>
+  </p>
+
+  <h4>
+    Immediately Invoked Function Expressions <i>(IIFEs)</i>
+  </h4>
+  Examples:
+  <ul>
+    <li>
+      <code>
+        var greet=function(name){ <br>
+        return 'Hello '+name; <br>
+        }('Shihab'); <br>
+      </code>
+    </li>
+    <li>
+      <code>
+        (function(name){ <br>
+        console.lgo('Hello '+name); <br>
+        }('Shihab')); <br>
+      </code>
+    </li>
+  </ul>
+  IIFEs are self invoked function expressions. This pattern could be
+  found in most of the libraries. IIFEs help to prevent
+  accidental variable overrides and function collisions. Whatever code
+  inside the IIFE is basically private to it, as
+  it is within the execution context of IIFE and never leaking to
+  Global. Thus libraries and frameworks make use of IIFEs
+  for <b>Safe Code</b>.
+
+  <h4>
+    Closure
+  </h4>
+  <pre>app4.js</pre>
+  <p>
+    Please do see the code snippets. <br> Closures are passed by reference
+    rather than values. If an inner function consumes a property
+    defined in outer function, it stays around until is consumed
+    by the inner function, even if the outer function's execution
+    context is popped out of the execution stack. This feature is
+    called <b>Closure</b> and those variables are called <b>Free Variables</b>.
+    <br>
+    One another application of closures is for creation of <b>factory functions</b>.
+    They are function which create another function with some predefined
+    properties or methods.
+    <br>
+    Callbacks being passed to jQuery and async functions like setTimeout
+    and setInterval are another examples for closure.
+  </p>
+
+  <h4>
+    <code>
+      call,bind and apply
+    </code>
+  </h4>
+  <pre>app5.js</pre>
+  <p>
+    Functions are special types of objects. They can have methods, property,
+    a name(optional) and code, which is invocable. When the code property
+    is invoked a new Execution Context gets created. This Execution Context
+    has:
+    <ul>
+      <li>
+        Variable Environment
+      </li>
+      <li>
+        Outer Variable Reference
+      </li>
+      <li>
+        <code>this</code> keyword
+      </li>
+    </ul>
+    <code>this</code> can refer to different objects depending upon the call site.
+    By default it refers to the Global variable or the object in which
+    the function is defined as a method.
+    <br>
+    In order to control the <code>this</code> keyword reference when have
+    three build in methods for the functions. They are
+    <ul>
+      <li>
+        <code>
+          call()
+        </code> which takes the object to be referred and the arguments to
+        the function as <i>comma separated values</i>.
+      </li>
+      <li>
+        <code>
+          apply()
+        </code> which takes the object to be referred and the arguments to
+        the function as <i>array</i>.
+      </li>
+      <li>
+        <code>
+          bind()
+        </code> is used to create function expressions with the object to
+        be referred passed as the first argument. The function parameters
+        can be passed as csv as the second argument. Bind actually creates a
+        copy of the original function with this keyword referring to the passed
+        object. The created function object can be invoked as required.
+      </li>
+    </ul>
+  </p>
+
+
+</body>
+
+</html>
